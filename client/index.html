@@ -1,33 +1,106 @@
-<!doctype>
+<!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="utf-8">
-        <title>Mon magasin en ligne 100% bons plans</title>
-        <!-- Load Vue followed by Vue Router -->
-        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/http-vue-loader/src/httpVueLoader.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/vue-router/dist/vue-router.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    </head>
-    <body>
-        <div id="app">
-          <header>
-            <h1>À la bonne franquette</h1>
-            <nav>
-              <router-link to='/'>Accueil</router-link>
-              <router-link to='/panier'>Panier</router-link>
-            </nav>
-          </header>
-          <main>
-            <router-view
-              :articles="articles"
-              :panier="panier"
-              @add-article="addArticle"
-              @delete-article="deleteArticle"
-              @update-article="updateArticle"
-            ></router-view>
-          </main>
-        </div>
-        <script src="/vue-application.js"></script>
-    </body>
+  <head>
+    <meta charset="utf-8">
+    <title>Mon magasin en ligne 100% bons plans</title>
+    <!-- Load Vue followed by Vue Router -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/http-vue-loader/src/httpVueLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-router/dist/vue-router.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.js"></script>
+    <style>
+      * {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+      }
+
+      header {
+        display: flex;
+        padding: 2em 10%;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        background-color: orange;
+        color: white;
+        border-radius: 0 0 25px 25px;
+      }
+
+      h1 {
+        animation: logo 3s;
+      }
+
+      nav {
+        animation: navigation 2.5s;
+        margin: 20px 0;
+      }
+
+      @keyframes logo {
+        0% {opacity: 0;}
+        100% {opacity: 1;}
+      }
+
+      @keyframes navigation {
+        0% {opacity: 0;}
+        50% {opacity: 0;}
+        100% {opacity: 1;}
+      }
+
+      a {
+        background-color: white;
+        padding: 7.5px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        color: black;
+        margin: 0 2px;
+      }
+
+      a:hover {
+        border: solid black 1px;
+      }
+
+      a:active {
+        font-weight: bolder;
+        color: orange;
+      }
+
+      main {
+        padding: 50px 5%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <h1>À la bonne franquette</h1>
+        <nav>
+          <router-link to='/'>Accueil</router-link>
+          <router-link to='/panier'>Panier</router-link>
+          <router-link to='/register'>Register</router-link>
+          <router-link to='/login'>Login</router-link>
+        </nav>
+      </header>
+      <main>
+        <router-view
+        :articles="articles"
+        :panier="panier"
+        :user="user"
+        @add-article="addArticle"
+        @delete-article="deleteArticle"
+        @update-article="updateArticle"
+        @add-to-panier="addToPanier"
+        @remove-from-panier="removeFromPanier"
+        @update-panier="updatePanier"
+        @pay="pay"
+        @login="login"
+        @register="register"
+        @logout="logout"
+        ></router-view>
+      </main>
+    </div>
+    <script src="/vue-application.js"></script>
+  </body>
 </html>
